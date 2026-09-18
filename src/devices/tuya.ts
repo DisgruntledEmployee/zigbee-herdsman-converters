@@ -31116,4 +31116,27 @@ export const definitions: DefinitionWithExtend[] = [
             ],
         },
     },
+{
+        fingerprint: tuya.fingerprint("TS0601", ["_TZE204_58of2pfn"]),
+        model: "DIY-DC-04",
+        vendor: "Tuya",
+        description: "Four-channel Zigbee relay board",
+        extend: [tuya.modernExtend.tuyaBase({dp: true})],
+        exposes: [
+            e.switch().withEndpoint("l1").setAccess("state", ea.STATE_SET),
+            e.switch().withEndpoint("l2").setAccess("state", ea.STATE_SET),
+            e.switch().withEndpoint("l3").setAccess("state", ea.STATE_SET),
+            e.switch().withEndpoint("l4").setAccess("state", ea.STATE_SET),
+        ],
+        endpoint: () => ({l1: 1, l2: 1, l3: 1, l4: 1}),
+        meta: {
+            multiEndpoint: true,
+            tuyaDatapoints: [
+                [1, "state_l1", tuya.valueConverter.onOff],
+                [2, "state_l2", tuya.valueConverter.onOff],
+                [3, "state_l3", tuya.valueConverter.onOff],
+                [4, "state_l4", tuya.valueConverter.onOff],
+            ],
+        },
+    },
 ];
